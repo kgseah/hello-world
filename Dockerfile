@@ -9,8 +9,8 @@ COPY . /app
 
 # Install any needed packages specified in requirements.txt
 # If you have a requirements.txt, uncomment the next two lines
-# COPY requirements.txt /app/
-# RUN pip install --no-cache-dir -r requirements.txt
+# COPY requirements.txt /app/ 
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 80 available to the world outside this container
 EXPOSE 80

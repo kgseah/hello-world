@@ -1,4 +1,5 @@
 import logging
+import requests #not used
 
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.INFO)
