@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,18 +29,27 @@ jobs:
       id: vars
       run: echo "TAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
-    - name: Build and push Docker image
+    - name: Build Docker image
+      id: build-image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: false
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:${{ env.TAG }}
+
+    - name: Push Docker image
+      id: push-image
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: kgseah/${{ github.repository }}:${{ env.TAG }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:${{ env.TAG }}
 
     - name: Scan Docker image for vulnerabilities
-      uses: aquasecurity/trivy-action@0.20.0
+      uses: aquasecurity/trivy-action@v0.6.0
       with:
-        image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:${{ env.TAG }}
+        image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:${{ env.TAG }}
 
     - name: Run Docker container
       run: |
-        docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:${{ env.TAG }}
+        docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:${{ env.TAG }}
