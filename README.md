@@ -26,10 +26,13 @@
    cd hello-world
 
 2. **Install dependencies**:
+    ```sh
     pip install -r requirements.txt
 
 3. **Run the application on local**:
+    ```sh
     python app.py
 
 4. **Run the application on docker**:
+    ```sh
     docker build -t hello-world .
