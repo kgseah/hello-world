@@ -34,7 +34,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:${{ env.TAG }}
+        tags: kgseah/${{ github.repository }}:${{ env.TAG }}
 
     - name: Scan Docker image for vulnerabilities
       uses: aquasecurity/trivy-action@0.20.0
