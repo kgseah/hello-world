@@ -37,7 +37,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:${{ env.TAG }}
 
     - name: Scan Docker image for vulnerabilities
-      uses: aquasecurity/trivy-action@v0.6.0
+      uses: aquasecurity/trivy-action@0.20.0
       with:
         image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:${{ env.TAG }}
 
