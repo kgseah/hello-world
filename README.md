@@ -22,7 +22,7 @@
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/<your-username>/hello-world.git
+   git clone https://github.com/kgseah/hello-world.git
    cd hello-world
 
 2. **Install dependencies**:
